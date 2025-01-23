@@ -1,0 +1,10 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            String weather = WeatherService.getWeather("New York");
+            System.out.println(weather);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

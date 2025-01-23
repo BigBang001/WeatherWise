@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class WeatherService {
+    private static final String API_KEY = "YOUR_API_KEY";
+    private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+
+    public static String getWeather(String city) throws Exception {
+        String urlString = BASE_URL + "?q=" + city + "&appid=" + API_KEY + "&units=metric";
+        URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        // Parse JSON
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(response.toString());
+        String weather = root.get("weather").get(0).get("description").asText();
+        String temp = root.get("main").get("temp").asText();
+
+        return "Weather: " + weather + ", Temperature: " + temp + "°C";
+    }
+}

@@ -1,6 +1,6 @@
 # **WeatherWise: Weather-Powered Smart To-Do List**
 
-The **Weather-Powered Smart To-Do List** is a Java-based application that integrates weather data and Google Calendar to provide a personalized, dynamic to-do list. This application helps users organize their day by generating weather-dependent tasks and syncing them with Google Calendar.
+**WeatherWise** is a Java-based application that integrates weather data and Google Calendar to provide a personalized, dynamic to-do list. This application helps users organize their day by generating weather-dependent tasks and syncing them with Google Calendar.
 
 ---
 
